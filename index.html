@@ -95,7 +95,7 @@
             var number = document.getElementById("phoneNumber").value;
 
             form.addEventListener('submit', e => {
-              if (number.length != 10){alert("your phone number is incorrect: " + number); return;}
+              if (number.length != 10){alert("your phone number is incorrect: " + number)}
               e.preventDefault()
               fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
