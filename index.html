@@ -70,7 +70,7 @@
                                             <input type="email" name="Email" class="form-control" placeholder="Enter Your Email Address *" value="" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" name="Phone" class="form-control" maxlength="10" placeholder="Enter Mobile Number with Country Code *" value="" required=""/>
+                                            <input type="number" id="phoneNumber"name="Phone" class="form-control" maxlength="10" placeholder="Enter Mobile Number with Country Code *" value="" required=""/>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" name="Telegram Username" class="form-control" placeholder="Enter Your Telegram Username *" value="" required=""/>
@@ -92,8 +92,10 @@
           <script>
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyxVAv6EmkQiPfpXGNrpP-6e4fjOLSrUfV9LTHh2BHC_4U5RENF-Urn3wwZXTPZ3F7CDQ/exec'
             const form = document.forms['google-sheet']
-          
+            var number = document.getElementById("phoneNumber").value;
+
             form.addEventListener('submit', e => {
+              if (number.length != 10){alert("your phone number is incorrect: " + number); return;}
               e.preventDefault()
               fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
