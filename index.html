@@ -6,6 +6,9 @@
     <title>BRYLL BOTS NEET CRASH COURSE</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <style>
+            body{
+                background: -webkit-linear-gradient(left, #055a4f, #00c6ff);
+            }
             .register .nav-tabs .nav-link:hover{
                 border: none;
             }
@@ -32,10 +35,8 @@
                 color: #e9ecef;
             }
             .register{
-                background: -webkit-linear-gradient(left, #055a4f, #00c6ff);
                 margin-top: 3%;
                 padding: 3%;
-                border-radius: 2.5rem;
             }
             .btnSubmit
             {
@@ -54,7 +55,6 @@
 
 </head>
 <body>
-    
 <div class="container register">
             <div class="row">
                 <div class="col-md-12">
@@ -62,24 +62,24 @@
                             <h3 class="register-heading">NEET CRASH COURSE BOT PAYMENT FORM</h3>
                             <div class="row register-form">
                                 <div class="col-md-12">
-                                    <form method="post" autocomplete="off" name="google-sheet">
+                                    <form method="post" autocomplete="off" name="google-sheet" onsubmit="return main(event)">
                                         <div class="form-group">
-                                            <input type="text" name="Name" class="form-control" placeholder="Enter Your Full Name *" value="" required=""/>
+                                            <input type="text" id="name" name="Name" class="form-control" placeholder="Enter Your Full Name *" value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="Email" class="form-control" placeholder="Enter Your Email Address *" value="" required=""/>
+                                            <input type="text" id="email" name="Email" class="form-control" placeholder="Enter Your Email Address" value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" id="phoneNumber"name="Phone" class="form-control" maxlength="10" placeholder="Enter Mobile Number with Country Code *" value="" required=""/>
+                                            <input type="number" id="phoneNumber"name="Phone" class="form-control" maxlength="10" placeholder="Enter Mobile Number with Country Code *" value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="Telegram Username" class="form-control" placeholder="Enter Your Telegram Username *" value="" required=""/>
+                                            <input type="text" id="teleusr" name="Telegram Username" class="form-control" placeholder="Enter Your Telegram Username *" value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" name="Telegram id" class="form-control" placeholder="Enter Your Telegram ID *" value="" required=""/>
+                                            <input type="number" id="teleid" name="Telegram id" class="form-control" placeholder="Enter Your Telegram ID *" value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" name="submit" class="btnSubmit btn-block" value="Submit" />
+                                            <input type="submit" id="btn" name="submit" class="btnSubmit btn-block" value="Submit"/>
                                         </div>
                                     </form>
                                 </div>
@@ -87,23 +87,28 @@
                         </div>
                 </div>
             </div>
-        </div>
-          
-          <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyxVAv6EmkQiPfpXGNrpP-6e4fjOLSrUfV9LTHh2BHC_4U5RENF-Urn3wwZXTPZ3F7CDQ/exec'
-            const form = document.forms['google-sheet']
-            var number = document.getElementById("phoneNumber").value;
+        </div>          
+<script>
+function sleep(ms){return new Promise(resolve => setTimeout(resolve, ms));}
 
-            form.addEventListener('submit', e => {
-              if (number.length != 10){alert("your phone number is incorrect: " + number); return true;}
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
-                .catch(error => console.error('Error!', error.message))
-            })
-          </script>
+async function main(e){
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+var number = document.getElementById("phoneNumber").value;
+var teleid = document.getElementById("teleid").value;
+var teleusr = document.getElementById("teleusr").value;
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+
+if (name == ""){alert("Please type a Name"); e.preventDefault(); return}
+else if (email.includes("@") == false){alert("Please type a valid Email"); e.preventDefault(); return}
+else if (number.length != 10){alert("your phone number is incorrect: " + number); e.preventDefault(); return}
+else if (teleid.length <= 8){alert("your telegramID is incorrect:", teleid); e.preventDefault(); return}
+else if (teleusr.includes("@") == false){alert("Please write your UserName in the correct format with '@'"); e.preventDefault(); return}
+else{
+alert("Everything is okay!!");
+await sleep(3000); return true}}
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
