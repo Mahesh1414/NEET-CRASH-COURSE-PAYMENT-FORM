@@ -90,9 +90,11 @@
         </div>          
 <script>
 function sleep(ms){return new Promise(resolve => setTimeout(resolve, ms));}
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyxVAv6EmkQiPfpXGNrpP-6e4fjOLSrUfV9LTHh2BHC_4U5RENF-Urn3wwZXTPZ3F7CDQ/exec'
 
 async function main(e){
 
+const form = document.forms['google-sheet']
 var number = document.getElementById("phoneNumber").value;
 var teleid = document.getElementById("teleid").value;
 var teleusr = document.getElementById("teleusr").value;
@@ -106,7 +108,12 @@ else if (teleid.length <= 8){alert("your telegramID is incorrect:", teleid); e.p
 else if (teleusr.includes("@") == false){alert("Please write your UserName in the correct format with '@'"); e.preventDefault(); return}
 else{
 alert("Everything is okay!!");
-await sleep(3000); return true}}
+e.preventDefault();
+await sleep(2000);
+fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
+      .catch(error => console.error('Error!', error.message))
+}}
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
