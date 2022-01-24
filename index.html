@@ -60,6 +60,82 @@
                 color: rgb(246, 246, 252);
                 margin-top: 4%;
             }
+            .col-md-12{
+                position: relative;
+                margin-right: 100%;
+                width: auto;
+                min-height: 1px;
+                padding-right: 0px;
+                padding-left: 0px;}
+
+/* Customize the label (the container) */
+.checkboxcon {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkboxcon input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxcon:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxcon input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxcon input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxcon .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
     </style>
 
 </head>
@@ -96,10 +172,11 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="checkbox" name="Terms Non Refundable" value="accepted" required/>
-                                            <label for="terms" class="terms">I have acknowledged that my payment is non-refundable.</label>
-                                            <input type="checkbox" name="Terms Information Correct" value="accepted" required/>
-                                            <label for="terms" class="terms">I assure that all the information I provided is double-checked and it is correct.</label>
+                                            
+                                            <label class="checkboxcon terms"><input type="checkbox" id="checkbox1" name="Terms Non Refundable" value="accepted" required/><span class="checkmark"></span> I have acknowledged that my payment is non-refundable.</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="checkboxcon terms"><input type="checkbox" id="checkbox2" name="Terms Information Correct" value="accepted" required/><span class="checkmark"></span> I assure that all the information I provided is double-checked and it is correct.</label>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" id="btn" name="submit" class="btnSubmit btn-block" value="Submit"/>
@@ -110,7 +187,7 @@
                         </div>
                 </div>
             </div>
-        </div>          
+`        </div>          
 <script>
 function sleep(ms){return new Promise(resolve => setTimeout(resolve, ms));}
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyxVAv6EmkQiPfpXGNrpP-6e4fjOLSrUfV9LTHh2BHC_4U5RENF-Urn3wwZXTPZ3F7CDQ/exec'
@@ -126,36 +203,37 @@ var email = document.getElementById("email").value;
 var batch = document.getElementById("batch").value;
 var crash = document.getElementById("neetcrash").value;
 var revision11 = document.getElementById("11threvision").value;
-var none = document.getElementById("none").value;
 
 if (name == ""){alert("Please type a Name"); e.preventDefault(); return}
 else if (email.includes("@") == false){alert("Please type a valid Email"); e.preventDefault(); return}
 else if (number.length != 10){alert("your phone number is incorrect: " + number); e.preventDefault(); return}
 else if (teleusr.includes("@") == false){alert("Please write your UserName in the correct format with '@'"); e.preventDefault(); return}
 else if (teleid.length <= 8){alert("your telegramID is incorrect:", teleid); e.preventDefault(); return}
-else{
-alert("Everything is okay!!"); e.preventDefault();}
+else if (batch == ""){alert("Please choose the batch"); e.preventDefault(); return}
+else{e.preventDefault();}
+
 if (batch == crash){
-    alert("You are interested to purchase NEET CRASH COURSE 2022."); 
-    e.preventDefault();
+    alert("You are interested to purchase NEET CRASH COURSE 2022.");
     await sleep(1000);
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => open("https://rzp.io/i/vbKKLcne","_self"))
-      .catch(error => console.error('Error!', error.message))}
-//fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-//      .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
-//      .catch(error => console.error('Error!', error.message))
+      .catch(error => console.error('Error!', error.message))
+    return}
+
 else if (batch == revision11){
     alert("You are interested to purchase LAKSHYA NEET 11th Revision Series.");
-    e.preventDefault();
     await sleep(1000);
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => open("https://rzp.io/i/0hSHm2iZbL","_self"))
-      .catch(error => console.error('Error!', error.message))}
-else if (batch == none){
-    alert("Please choose the batch");
-    e.preventDefault(); return
-}
+      .catch(error => console.error('Error!', error.message))
+    return}
+
+
+
+//fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+//      .then(response => open("https://rzp.io/i/frDdjRgsX","_self"))
+//      .catch(error => console.error('Error!', error.message))
+
 }
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
